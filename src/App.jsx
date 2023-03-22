@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Box, Heading } from "@chakra-ui/react"
 import Header from "./components/Header/Header"
+import List from './components/List/List'
 function App() {
   const [value, setValue] = useState({
     task: "",
@@ -25,6 +26,7 @@ function App() {
     <Box>
       <Heading>TOdo List ✔</Heading>
       <Header value={value} setValue={setValue} />
+      <List value={value} />
     </Box>
   )
 }
