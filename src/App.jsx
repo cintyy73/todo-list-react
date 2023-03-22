@@ -7,7 +7,13 @@ function App() {
   const [value, setValue] = useState({
     task: "",
     filter:"all",
-    list:[]
+    list:[
+      {
+        task:'',
+        id:'',
+        complete: false
+      }
+    ]
   })
 
   // const [index, setIndex] = useState([0])

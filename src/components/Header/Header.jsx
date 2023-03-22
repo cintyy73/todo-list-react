@@ -12,7 +12,12 @@ const Header = ({ value, setValue }) => {
     const handleList = (event) => {
         setValue({
             ...value,
-            list: [...value.list, value.task]
+            list: [...value.list, {
+                ...list,
+                task: value.task,
+                id: self.crypto.randomUUID()
+        
+            }]
         })
         console.log(value.list)
     }
