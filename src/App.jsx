@@ -1,22 +1,30 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 
 import { Box, Heading } from "@chakra-ui/react"
-
+import Header from "./components/Header/Header"
 function App() {
-  // const [background, setBackground] = useState([index])
+  const [value, setValue] = useState({
+    task: "",
+    filter:"all",
+    list:[]
+  })
+
+  // const [index, setIndex] = useState([0])
   //const images = ["url('./assets/background/fractal-3.jpg')"]
   
   // const handdleIndex = () => {
-  //   const index = Math.floor(Math.random()*10)
+  //   index = Math.floor(Math.random()*10)
   //   if(index === Math.floor(Math.random()*10)){
   //     index = Math.floor(Math.random()*10)
   //   }
-  //   setBackground(images[index])
+  //   setBackground(index)
   //}
+  //agregar a box bgImage={images[index]}
 
   return (
-    <Box >
-      <Heading>hola!</Heading>
+    <Box>
+      <Heading>TOdo List ✔</Heading>
+      <Header value={value} setValue={setValue} />
     </Box>
   )
 }
