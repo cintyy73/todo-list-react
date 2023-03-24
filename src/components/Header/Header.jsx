@@ -9,7 +9,7 @@ const Header = ({ value, setValue }) => {
         })
         console.log(event.target.name)
     }
-    const handleList = (event) => {
+const handleList = (event) => {
         setValue({
             ...value,
             list: [...value.list, {
@@ -19,11 +19,10 @@ const Header = ({ value, setValue }) => {
         
             }]
         })
-        console.log(value.list)
     }
     return (
         <header>
-            <HStack >
+            <HStack whidth={'50'}>
                 <Input
                     name='task'
                     value={value.task}

@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react"
+import Editor from "../Editor/Editor"
 
 const List = ({value}) => {
     // const filter = () => {
@@ -11,7 +12,10 @@ const List = ({value}) => {
     <Flex>
       <ul>
 
-        {(value.list).map((item) => <li key={item.id}>{item.task}</li>)}
+        {(value.list).map((item) => <li key={item.id}>
+                {item.task}
+                <Editor />
+            </li>)}
       </ul>
     </Flex>
   )
