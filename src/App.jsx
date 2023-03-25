@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { Box, Button, VStack, Heading } from "@chakra-ui/react"
 
-import { Box, Button, Heading } from "@chakra-ui/react"
 import Header from "./components/Header/Header"
 import List from './components/List/List'
+
 import img0 from "./assets/background/img-10.jpg"
 import img1 from "./assets/background/img-1.jpg"
 import img2 from "./assets/background/img-2.jpg"
@@ -14,9 +15,10 @@ import img7 from "./assets/background/img-7.jpg"
 import img8 from "./assets/background/img-8.jpg"
 import img9 from "./assets/background/img-9.jpg"
 import img10 from "./assets/background/img-11.jpg"
-const images = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10]
-function App() {
 
+const images = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10]
+
+function App() {
   const [value, setValue] = useState({
     task: "",
     filter:"all",
@@ -24,7 +26,7 @@ function App() {
       {
         task:'',
         id:'',
-        complete: false  
+        complete: false 
       }
     ]
   })
@@ -36,9 +38,11 @@ function App() {
       <Button onClick={()=>setIndex(Math.floor(Math.random()*10))}>
         Cambiar tema
       </Button> 
+      <VStack bg={'pink.200'}>
       <Heading textAlign={'center'}>ToDo List ✔</Heading>
       <Header value={value} setValue={setValue} />
       <List value={value} />
+      </VStack>
     </Box>
   )
 }

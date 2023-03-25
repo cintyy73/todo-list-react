@@ -1,5 +1,5 @@
-import { Flex } from "@chakra-ui/react"
-import Editor from "../Editor/Editor"
+import { VStack } from "@chakra-ui/react"
+import Item from "../Item/Item"
 
 const List = ({value}) => {
     // const filter = () => {
@@ -9,15 +9,9 @@ const List = ({value}) => {
     // }
     // filterList=filter()
   return (
-    <Flex>
-      <ul>
-
-        {(value.list).map((item) => <li key={item.id}>
-                {item.task}
-                <Editor />
-            </li>)}
-      </ul>
-    </Flex>
+    <VStack>
+       <Item  value={value}/>
+    </VStack>
   )
 }
 
