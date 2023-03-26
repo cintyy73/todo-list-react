@@ -1,4 +1,5 @@
 import { HStack, Button, Input, Select, list } from '@chakra-ui/react'
+import { setItemLS } from '../../utils/js/utils'
 // import { useState } from 'react'
 
 const Header = ({ value, setValue }) => {
@@ -19,6 +20,13 @@ const handleList = (event) => {
         
             }]
         })
+        setItemLS('tasks',[...value.list, {
+            ...list,
+            task: value.task,
+            id: self.crypto.randomUUID()
+    
+        }]
+        )
     }
     return (
         <header>
@@ -38,6 +46,7 @@ const handleList = (event) => {
                 value={value.filter}
                 onChange={handleChange}
             >
+                <option value='all'>Seleccionar filtro</option>
                 <option value='all'>Todas las tareas</option>
                 <option value='list'>Tareas listas</option>
                 <option value='pending'>Tareas pendientes</option>
