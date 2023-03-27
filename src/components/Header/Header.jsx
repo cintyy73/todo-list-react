@@ -10,20 +10,23 @@ const Header = ({ value, setValue }) => {
         })
         console.log(event.target.name)
     }
-const handleList = (event) => {
+
+    
+const handleList = () => {
         setValue({
             ...value,
             list: [...value.list, {
                 ...list,
                 task: value.task,
-                id: self.crypto.randomUUID()
-        
+                id: self.crypto.randomUUID(),
+                complete:false
             }]
         })
         setItemLS('tasks',[...value.list, {
             ...list,
             task: value.task,
-            id: self.crypto.randomUUID()
+            id: self.crypto.randomUUID(),
+            complete:false
     
         }]
         )

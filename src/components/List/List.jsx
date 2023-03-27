@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react"
 import Item from "../Item/Item"
 
-const List = ({value}) => {
+const List = ({value, setValue, complete, setComplete}) => {
     // const filter = () => {
     //     if(value.filter==="pending"){
     //         return (value.list).filter(task=>)
@@ -10,7 +10,7 @@ const List = ({value}) => {
     // filterList=filter()
   return (
     <VStack>
-       <Item  value={value}/>
+       <Item setValue={setValue} value={value} complete={complete} setComplete={setComplete}/>
     </VStack>
   )
 }

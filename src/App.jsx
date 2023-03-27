@@ -25,18 +25,19 @@ function App() {
     filter:"all",
     list:getItemLS('tasks')||[]
   })
-
+ 
  const [index, setIndex] = useState(10)
-
+ 
+ 
   return (
-    <Box minHeight={'100vh'} width={'100%'} bgImage={`url(${images[index]})`}   backgroundSize={`cover`} display={'flex'} justifyContent={'center'} aligneItems={'center'} p={5}>
+    <Box minHeight={'100vh'} width={'100%'} bgImage={`url(${images[index]})`}   backgroundSize={`cover`} display={'flex'} justifyContent={'center'} alignItems={'center'} p={5}>
      
-      <Box mT={8}  width={'40%'} bg={'pink.200'} boxShadow={'base'} p={'6'} rounded={'md'} >
+      <Box marginTop={8}  width={'40%'} bg={'pink.200'} boxShadow={'base'} p={'6'} rounded={'md'} >
       <Heading textAlign={'center'}>ToDo List ✔  <Button onClick={()=>setIndex(Math.floor(Math.random()*10))} size={'md'} display={'flex'} >
         Cambiar tema
       </Button> </Heading>
       <Header value={value} setValue={setValue} />
-      <List value={value} />
+      <List value={value} setValue={setValue}  />
       </Box>
     </Box>
   )
