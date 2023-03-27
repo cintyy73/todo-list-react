@@ -23,11 +23,12 @@ function App() {
   const [value, setValue] = useState({
     task: "",
     filter:"all",
-    list:getItemLS('tasks')||[]
+    list:getItemLS('tasks')||[],
+    filterList : getItemLS('filterList')||[]
   })
  
- const [index, setIndex] = useState(10)
- 
+  
+  const [index, setIndex] = useState(10) 
  
   return (
     <Box minHeight={'100vh'} width={'100%'} bgImage={`url(${images[index]})`}   backgroundSize={`cover`} display={'flex'} justifyContent={'center'} alignItems={'center'} p={5}>
@@ -36,7 +37,7 @@ function App() {
       <Heading textAlign={'center'}>ToDo List ✔  <Button onClick={()=>setIndex(Math.floor(Math.random()*10))} size={'md'} display={'flex'} >
         Cambiar tema
       </Button> </Heading>
-      <Header value={value} setValue={setValue} />
+      <Header value={value} setValue={setValue}  />
       <List value={value} setValue={setValue}  />
       </Box>
     </Box>

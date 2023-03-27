@@ -1,16 +1,16 @@
 import { VStack } from "@chakra-ui/react"
 import Item from "../Item/Item"
 
-const List = ({value, setValue, complete, setComplete}) => {
-    // const filter = () => {
-    //     if(value.filter==="pending"){
-    //         return (value.list).filter(task=>)
-    //     }
-    // }
-    // filterList=filter()
+const List = ({value, setValue}) => {
+   
   return (
     <VStack>
-       <Item setValue={setValue} value={value} complete={complete} setComplete={setComplete}/>
+        {(value.list).map((item) =><Item 
+        setValue={setValue} 
+        value={value} 
+        item= {item}
+        key={item.id} /> )} 
+
     </VStack>
   )
 }

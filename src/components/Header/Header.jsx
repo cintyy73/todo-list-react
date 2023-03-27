@@ -1,8 +1,8 @@
 import { HStack, Button, Input, Select, list } from '@chakra-ui/react'
 import { setItemLS } from '../../utils/js/utils'
 // import { useState } from 'react'
-let filterList=[];
-const Header = ({ value, setValue }) => {
+
+const Header = ({ value, setValue}) => {
     const handleChange = (event) => {
         setValue({
             ...value,
@@ -10,46 +10,28 @@ const Header = ({ value, setValue }) => {
         })
             
              if ((event.target.value)==="pending"){
-                filterList=[];
+               
                  console.log("pending")
-                filterList = [...value.list].map((item)=>{
-                   item.complete
-                   return filterList
-                 })
-              // setItemLS('tasks',[...value.list, {
-              //     pendingList,
-          
-              // }]
-              // )
+               const filterPending = [...value.list].filter((item)=>!item.complete)
+              setItemLS('tasks', filterPending)
              }
           if ((event.target.value)==="complete"){
-            filterList=[];
-              filterList = [...value.list].map((item)=>{
-                !item.complete
-                  return filterList
-          }  ) 
-              // setItemLS('tasks',[...value.list, {
-              //     pendingList,
+          
+             const filterComplete = [...value.list].filter((item)=>item.complete) 
+              setItemLS('tasks', filterComplete )
+
+            //   setItemLS('tasks',[...value.list, {
+            //       pendingList,
         
-              // }])
+            //   }])
          }
            if ((event.target.value)==="all"){
-            filterList=[...value.list, {
-                          valueList,
-                  
-                      }];
-        //       setItemLS('tasks',[...value.list, {
-        //           valueList,
-          
-        //       }])
+            
+              setItemLS('tasks', value.list)
            }   
-                  console.log(filterList)
-          
-          
        
     }
 
-    
 const handleList = () => {
         setValue({
             ...value,

@@ -4,7 +4,7 @@ import { setItemLS } from '../../utils/js/utils'
 //import { useState } from 'react'
 //import DrawerEditor from "../Drawer/Drawer"
 
-const Item = ({ value, setValue }) => {
+const Item = ({ value, setValue, item }) => {
 
    
 
@@ -30,7 +30,7 @@ const Item = ({ value, setValue }) => {
   }
 
   return (
-    (value.list).map((item) => <Flex 
+    <Flex 
         key={item.id} 
         alignItems={"center"} 
         justifyContent={"space-evenly"}
@@ -70,7 +70,7 @@ const Item = ({ value, setValue }) => {
 
      </> 
     </Flex>)
-  )
+  
 }
 
 export default Item
