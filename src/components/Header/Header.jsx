@@ -1,14 +1,52 @@
 import { HStack, Button, Input, Select, list } from '@chakra-ui/react'
 import { setItemLS } from '../../utils/js/utils'
 // import { useState } from 'react'
-
+let filterList=[];
 const Header = ({ value, setValue }) => {
     const handleChange = (event) => {
         setValue({
             ...value,
             [event.target.name]: (event.target.value)
         })
-        console.log(event.target.name)
+            
+             if ((event.target.value)==="pending"){
+                filterList=[];
+                 console.log("pending")
+                filterList = [...value.list].map((item)=>{
+                   item.complete
+                   return filterList
+                 })
+              // setItemLS('tasks',[...value.list, {
+              //     pendingList,
+          
+              // }]
+              // )
+             }
+          if ((event.target.value)==="complete"){
+            filterList=[];
+              filterList = [...value.list].map((item)=>{
+                !item.complete
+                  return filterList
+          }  ) 
+              // setItemLS('tasks',[...value.list, {
+              //     pendingList,
+        
+              // }])
+         }
+           if ((event.target.value)==="all"){
+            filterList=[...value.list, {
+                          valueList,
+                  
+                      }];
+        //       setItemLS('tasks',[...value.list, {
+        //           valueList,
+          
+        //       }])
+           }   
+                  console.log(filterList)
+          
+          
+       
     }
 
     
@@ -51,7 +89,7 @@ const handleList = () => {
             >
                 <option value='all'>Seleccionar filtro</option>
                 <option value='all'>Todas las tareas</option>
-                <option value='list'>Tareas listas</option>
+                <option value='complete'>Tareas listas</option>
                 <option value='pending'>Tareas pendientes</option>
             </Select>
 

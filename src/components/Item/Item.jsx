@@ -28,6 +28,7 @@ const Item = ({ value, setValue }) => {
     setItemLS('tasks',(value.list).filter((item)=>item.id!==id))
  
   }
+
   return (
     (value.list).map((item) => <Flex 
         key={item.id} 
@@ -39,6 +40,7 @@ const Item = ({ value, setValue }) => {
         fontSize={'15px'} 
         borderColor={'black'} 
         as={item.complete?'del': ''}>
+          
         {item.task}  
       </Text>
       <>
