@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Box, Button, Heading } from "@chakra-ui/react"
+import { Box, Button, Heading, VStack } from "@chakra-ui/react"
 
 import Header from "./components/Header/Header"
 import List from './components/List/List'
+//import DrawerExample from './components/Drawer/Drawer'
 
 import img0 from "./assets/background/img-10.jpg"
 import img1 from "./assets/background/img-1.jpg"
@@ -24,25 +25,58 @@ function App() {
     task: "",
     filter:"all",
     list:getItemLS('tasks')||[],
-    filterList : getItemLS('filterList')||[]
   })
  
-  
   const [index, setIndex] = useState(10) 
- 
+  
   return (
-    <Box minHeight={'100vh'} width={'100%'} bgImage={`url(${images[index]})`}   backgroundSize={`cover`} display={'flex'} justifyContent={'center'} alignItems={'center'} p={5}>
-     
-      <Box marginTop={8}  width={'40%'} bg={'pink.200'} boxShadow={'base'} p={'6'} rounded={'md'} >
-      <Heading textAlign={'center'}>ToDo List ✔  <Button onClick={()=>setIndex(Math.floor(Math.random()*10))} size={'md'} display={'flex'} >
-        Cambiar tema
-      </Button> </Heading>
-      <Header value={value} setValue={setValue}  />
-      <List value={value} setValue={setValue}  />
-      </Box>
+  <VStack  
+    minHeight={'100vh'} 
+    width={'100%'}  
+    bgImage={`url(${images[index]})`} 
+    backgroundSize={'cover'}>
+    <Button 
+      type={'button'}
+      size={'s'}
+      fontFamily={'monospace'}
+      alignSelf={'flex-start'}//en mobile no! arreglar
+      //color={"current"}
+      colorScheme={'orange'} 
+      margin={8} 
+      padding={1}
+      border={'current'}
+      onClick={()=>setIndex(Math.floor(Math.random()*10))} 
+      children={'Cambiar tema'}>    
+    </Button>
+    <Box   
+      width={'60%'} 
+      background={'orange.400'} 
+      boxShadow={'dark-lg'} 
+      p={6} 
+      rounded={'md'}
+      display={'flex'} 
+      justifyContent={'center'} 
+      alignItems={'center'} 
+      padding={5}
+      gap={3}>
+      <VStack 
+        whidth='100%' >
+        <Heading 
+          textAlign={'center'}>
+          ToDo List ✔   
+        </Heading>
+        <Header 
+          value={value} 
+          setValue={setValue} 
+        />
+        <List 
+          value={value} 
+          setValue={setValue}  
+        />
+      </VStack>
     </Box>
+  </VStack>  
   )
-}
-
+} 
 
 export default App

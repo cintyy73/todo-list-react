@@ -8,29 +8,7 @@ const Header = ({ value, setValue}) => {
             ...value,
             [event.target.name]: (event.target.value)
         })
-            
-             if ((event.target.value)==="pending"){
-               
-                 console.log("pending")
-               const filterPending = [...value.list].filter((item)=>!item.complete)
-              setItemLS('tasks', filterPending)
-             }
-          if ((event.target.value)==="complete"){
-          
-             const filterComplete = [...value.list].filter((item)=>item.complete) 
-              setItemLS('tasks', filterComplete )
-
-            //   setItemLS('tasks',[...value.list, {
-            //       pendingList,
-        
-            //   }])
-         }
-           if ((event.target.value)==="all"){
-            
-              setItemLS('tasks', value.list)
-           }   
-       
-    }
+    }  
 
 const handleList = () => {
         setValue({
