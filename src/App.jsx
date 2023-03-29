@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Box, Button, Heading, VStack } from "@chakra-ui/react"
+import { Box, Button, Heading, VStack, Center} from "@chakra-ui/react"
+import { getItemLS } from './utils/js/utils'
 
 import Header from "./components/Header/Header"
 import List from './components/List/List'
@@ -16,9 +17,9 @@ import img7 from "./assets/background/img-7.jpg"
 import img8 from "./assets/background/img-8.jpg"
 import img9 from "./assets/background/img-9.jpg"
 import img10 from "./assets/background/img-11.jpg"
-import { getItemLS } from './utils/js/utils'
 
-const images = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10]
+
+const images = [img10, img1, img2, img3, img4, img5, img6, img7, img8, img9, img0]
 
 function App() {
   const [value, setValue] = useState({
@@ -27,43 +28,51 @@ function App() {
     list:getItemLS('tasks')||[],
   })
  
-  const [index, setIndex] = useState(10) 
+  const [index, setIndex] = useState(0) 
   
   return (
-  <VStack  
-    minHeight={'100vh'} 
-    width={'100%'}  
+  <Center  
+    minHeight='100vh' 
+    width='100vw'  
     bgImage={`url(${images[index]})`} 
-    backgroundSize={'cover'}>
-    <Button 
-      type={'button'}
-      size={'s'}
-      fontFamily={'monospace'}
-      alignSelf={'flex-start'}//en mobile no! arreglar
-      //color={"current"}
-      colorScheme={'orange'} 
-      margin={8} 
-      padding={1}
-      border={'current'}
-      onClick={()=>setIndex(Math.floor(Math.random()*10))} 
-      children={'Cambiar tema'}>    
-    </Button>
+    backgroundSize='cover'>
+   
     <Box   
-      width={'60%'} 
-      background={'orange.400'} 
-      boxShadow={'dark-lg'} 
-      p={6} 
-      rounded={'md'}
-      display={'flex'} 
-      justifyContent={'center'} 
-      alignItems={'center'} 
+      width={{base:'80%', md:'60%'}} 
+      minHeigth='90vh'
+      marginTop={8}
+      background='rgba(246, 178, 107, 0.2)'
+      boxShadow='dark-lg'
+      rounded='md'
+      display='flex'
+      justifyContent='space-around'
       padding={5}
-      gap={3}>
-      <VStack 
-        whidth='100%' >
+      gap={3}
+    >
+
+      <VStack>
         <Heading 
-          textAlign={'center'}>
+          color='rgba(0, 0, 0, 1)'
+          textAlign='center'
+        >
+          <Button 
+            display={{base:'none', md:'inline'}}
+            type='button'
+            size='sm'
+            fontFamily='monospace'
+           
+            colorScheme='orange'
+            bgImage={`url(${images[index +1 || index-1]})`}
+            backgroundSize='cover'
+            margin={8} 
+            children='Tema'
+            padding={1}
+            onClick={()=>setIndex(Math.floor(Math.random()*10))} 
+          >  
+          </Button> 
+          
           ToDo List ✔   
+          
         </Heading>
         <Header 
           value={value} 
@@ -75,7 +84,7 @@ function App() {
         />
       </VStack>
     </Box>
-  </VStack>  
+  </Center>  
   )
 } 
 

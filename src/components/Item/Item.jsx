@@ -1,5 +1,5 @@
 import { CheckIcon,  EditIcon,  DeleteIcon } from "@chakra-ui/icons"
-import { IconButton, Card, CardBody, Text } from "@chakra-ui/react"
+import { IconButton, HStack, Text, ButtonGroup } from "@chakra-ui/react"
 import { setItemLS } from '../../utils/js/utils'
 //import { useState } from 'react'
 //import DrawerEditor from "../Drawer/Drawer"
@@ -28,20 +28,18 @@ const Item = ({ value, setValue, item }) => {
   }
 
   return (
-    <Card whidth='100%'>
-      <CardBody 
-      whidth='100%'
-      wrap='no-rap'
-      >
-
-        <Text 
+        <HStack 
+          
+          background={item.complete?'red.150':'green.250'}
+          >
+          <Text
           fontSize={'15px'}
           borderColor={'black'} 
-          as={item.complete?'del': ''}>
-            
-          {item.task}  
-        </Text>
-        <>
+          as={item.complete?'del': ''}
+          >
+            {item.task}  </Text>
+            <ButtonGroup
+          spacing={2}>
         <IconButton
           onClick={()=>handleText(item.id)} 
           variant='ghost'
@@ -65,11 +63,9 @@ const Item = ({ value, setValue, item }) => {
           fontSize='15px'
           icon={<EditIcon />}
         />
+      </ButtonGroup> 
+      </HStack>
 
-      </> 
-      </CardBody>
-
-  </Card>
       )
   
 }
