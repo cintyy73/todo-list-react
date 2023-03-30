@@ -1,11 +1,16 @@
-import { useState } from 'react'
-import { Box, Button, Heading, VStack, Center} from "@chakra-ui/react"
-import { getItemLS } from './utils/js/utils'
+import { 
+  Box,
+  Button,
+  Heading,
+  VStack,
+  Center,
+  Tooltip
+} from "@chakra-ui/react"
 
+import { useState } from 'react'
+import { getItemLS } from './utils/js/utils'
 import Header from "./components/Header/Header"
 import List from './components/List/List'
-//import DrawerExample from './components/Drawer/Drawer'
-
 import img0 from "./assets/background/img-10.jpg"
 import img1 from "./assets/background/img-1.jpg"
 import img2 from "./assets/background/img-2.jpg"
@@ -19,7 +24,7 @@ import img9 from "./assets/background/img-9.jpg"
 import img10 from "./assets/background/img-11.jpg"
 
 
-const images = [img10, img1, img2, img3, img4, img5, img6, img7, img8, img9, img0]
+const images = [img10, img1, img2, img3, img4, img5, img6, img7, img8, img9, img0]//falta validacion para q no se repita el index
 
 function App() {
   const [value, setValue] = useState({
@@ -39,7 +44,6 @@ function App() {
    
     <Box   
       width={{base:'80%', md:'60%'}} 
-      
       marginTop={8}
       background='rgba(246, 178, 107, 0.2)'
       boxShadow='dark-lg'
@@ -53,26 +57,26 @@ function App() {
       <VStack 
         color='current'>
         <Heading 
+          size={{base:'2xl', xl:'4xl'}}
           color='rgba(0, 0, 0, 1)'
-          textAlign='center'
-        >
-          <Button 
-            display={{base:'none', md:'inline'}}
-            type='button'
-            size='sm'
-            fontFamily='monospace'
-            
-            colorScheme='orange'
-            bgImage={`url(${images[index +1 || index-1]})`}
-            backgroundSize='cover'
-            margin={8} 
-            padding={1}
-            onClick={()=>setIndex(Math.floor(Math.random()*10))} 
-          >  Tema
-          </Button> 
-          
+          textAlign='center'>
+          <Tooltip label='Cambiar fondo' background='rgba(246, 178, 107, 0.8)' > 
+            <Button 
+              display={{base:'none', md:'inline'}}
+              type='button'
+              size='xl'
+              fontSize='2xl'
+              fontFamily='monospace'
+              colorScheme='orange'
+              bgImage={`url(${images[index +1 || index-1]})`}
+              backgroundSize='cover'
+              margin={8} 
+              padding={1}
+              onClick={()=>setIndex(Math.floor(Math.random()*10))} >
+                🎨
+            </Button> 
+          </Tooltip>  
           ToDo List ✔   
-          
         </Heading>
         <Header 
           value={value} 

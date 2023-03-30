@@ -5,5 +5,3 @@ export const setItemLS = (key, value) => {
 export const getItemLS = (key) => {
     return JSON.parse(localStorage.getItem(key ))
 }
-
-
