@@ -1,4 +1,5 @@
-import { VStack, HStack, Button, Input, Select, list, InputRightElement, InputGroup } from '@chakra-ui/react'
+import { CheckCircleIcon } from '@chakra-ui/icons'
+import { VStack, HStack,  IconButton, Input, Select, list, InputRightElement, InputGroup } from '@chakra-ui/react'
 import { setItemLS } from '../../utils/js/utils'
 // import { useState } from 'react'
 
@@ -48,12 +49,12 @@ const handleList = () => {
 
                    <InputRightElement width='4.5rem'>
                        
-                        <Button 
+                        <IconButton 
                             h='1.75rem'     
                             size='sm' 
-                            onClick={handleList} >
-                            Agregar  
-                        </Button>
+                            onClick={handleList} 
+                            icon={<CheckCircleIcon />} 
+                        />
                         
                     </InputRightElement>
 

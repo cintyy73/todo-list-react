@@ -3,22 +3,31 @@ import {
   IconButton,
   useDisclosure,
   HStack, Button, 
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalHeader,
+  // ModalFooter,
+  // ModalBody,
+  // ModalCloseButton,
   EditableTextarea,
   EditablePreview,
   Editable,
   EditableInput,
   Input,
   Text, 
-  ButtonGroup 
+  ButtonGroup, 
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  
+  
 } from "@chakra-ui/react"
-import { useState } from 'react'
+import { useState,useRef } from 'react'
 
 import { setItemLS } from '../../utils/js/utils'
 //import DrawerEditor from "../Drawer/Drawer"
@@ -26,6 +35,7 @@ import { setItemLS } from '../../utils/js/utils'
 const Item = ({ value, setValue, item }) => {
   const [edit, setEdit] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = useRef()
   const handleText = (id)=>{
    const newList = [...value.list].map((item)=>{ 
       if(item.id===id){
@@ -101,6 +111,7 @@ const Item = ({ value, setValue, item }) => {
          
          <>
         <IconButton 
+          ref={btnRef}
           onClick={onOpen}
           variant='ghost'
           colorScheme='blue'
@@ -108,8 +119,43 @@ const Item = ({ value, setValue, item }) => {
           fontSize='15px'
           icon={<EditIcon />}
         />
-        
-        <Modal 
+      <Drawer
+        isOpen={isOpen}
+        placement='right'
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Editar tarea</DrawerHeader>
+
+          <DrawerBody>
+            <Input m={2} type='text' value={edit} onChange={editTask} placeholder={item.task}/>
+           
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Button variant='red.500' mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button  onClick={()=>{
+              handleTask(item.id)
+              onClose(true)} }
+               colorScheme='blue'>Editar</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+      </>
+      </ButtonGroup>
+      </HStack>
+
+      ) 
+  
+   }
+
+export default Item
+ {/* <Modal 
         blockScrollOnMount={false} 
         isOpen={isOpen} 
         onClose={onClose}
@@ -137,14 +183,4 @@ const Item = ({ value, setValue, item }) => {
               onClose(true)} }variant='ghost'>Editar</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-      </> 
-
-      </ButtonGroup>
-      </HStack>
-
-      ) 
-  
-   }
-
-export default Item
+      </Modal> */}
