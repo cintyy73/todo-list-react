@@ -39,7 +39,7 @@ function App() {
    
     <Box   
       width={{base:'80%', md:'60%'}} 
-      minHeigth='90vh'
+      
       marginTop={8}
       background='rgba(246, 178, 107, 0.2)'
       boxShadow='dark-lg'
@@ -50,7 +50,8 @@ function App() {
       gap={3}
     >
 
-      <VStack>
+      <VStack 
+        color='current'>
         <Heading 
           color='rgba(0, 0, 0, 1)'
           textAlign='center'
@@ -60,15 +61,14 @@ function App() {
             type='button'
             size='sm'
             fontFamily='monospace'
-           
+            
             colorScheme='orange'
             bgImage={`url(${images[index +1 || index-1]})`}
             backgroundSize='cover'
             margin={8} 
-            children='Tema'
             padding={1}
             onClick={()=>setIndex(Math.floor(Math.random()*10))} 
-          >  
+          >  Tema
           </Button> 
           
           ToDo List ✔   

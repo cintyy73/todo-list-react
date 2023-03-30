@@ -1,4 +1,4 @@
-import { HStack, Button, Input, Select, list } from '@chakra-ui/react'
+import { VStack, HStack, Button, Input, Select, list, InputRightElement, InputGroup } from '@chakra-ui/react'
 import { setItemLS } from '../../utils/js/utils'
 // import { useState } from 'react'
 
@@ -30,16 +30,35 @@ const handleList = () => {
         )
     }
     return (
-        <header>
-            <HStack whidth={'50'}>
-                <Input
-                    name='task'
-                    value={value.task}
-                    onChange={handleChange}
-                    placeholder='Anadir nueva tarea'
-                    size='sm'
-                />
-                <Button onClick={handleList} >Agregar  </Button>
+        <VStack>
+
+            <HStack >
+
+                <InputGroup size='md'>
+
+                    <Input
+                        pr='4.5rem'
+                        type='text'
+                        name='task'
+                        value={value.task}
+                        onChange={handleChange}
+                        placeholder='Anadir nueva tarea'
+                        size='sm'
+                    />
+
+                   <InputRightElement width='4.5rem'>
+                       
+                        <Button 
+                            h='1.75rem'     
+                            size='sm' 
+                            onClick={handleList} >
+                            Agregar  
+                        </Button>
+                        
+                    </InputRightElement>
+
+                </InputGroup>
+
             </HStack>
 
             <Select
@@ -53,7 +72,7 @@ const handleList = () => {
                 <option value='pending'>Tareas pendientes</option>
             </Select>
 
-        </header>
+        </VStack>
     )
 }
 
