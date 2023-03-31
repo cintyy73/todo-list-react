@@ -1,14 +1,22 @@
 import { setItemLS } from '../../utils/js/utils'
-import { useState,useRef } from 'react'
-import { CheckIcon,  EditIcon,  DeleteIcon } from "@chakra-ui/icons"
+import { 
+  useState,
+  useRef 
+} from 'react'
+
+import { 
+  CheckIcon,  
+  EditIcon,  
+  DeleteIcon 
+} from "@chakra-ui/icons"
+
 import { 
   IconButton,
+  Icon, 
   useDisclosure,
-  Stack, Button, 
-  // EditableTextarea,
-  // EditablePreview,
-  // Editable,
-  // EditableInput,
+  Stack, 
+  Badge,
+  Button, 
   Modal,
   ModalOverlay,
   ModalContent,
@@ -26,27 +34,30 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter, 
-  Tooltip, 
+  Tooltip,
+  Divider,
+  AlertIcon,
+  Alert, 
 } from "@chakra-ui/react"
 
-//import DrawerEditor from "../Drawer/Drawer"
-
 const Item = ({ value, setValue, item }) => {
-  const [isModal, setIsModal] = useState(false)
-  const [edit, setEdit] = useState(item.task)
-  const btnRef = useRef()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const OverlayTwo = () => (
     <ModalOverlay
-    bg='none'
-    backdropFilter='auto'
-    backdropInvert='80%'
-    backdropBlur='2px'
+      bg='none'
+      backdropFilter='auto'
+      backdropInvert='80%'
+      backdropBlur='2px'
     />
-    )
-    const [overlay, setOverlay] = useState(<OverlayTwo />)
+  )
+  const btnRef = useRef()
+  const [isModal, setIsModal] = useState(false)
+  const [edit, setEdit] = useState(item.task)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [overlay, setOverlay] = useState(<OverlayTwo />)
+
   const handleText = (id)=>{
-   const newList = [...value.list].map((item)=>{ 
+    const newList = [...value.list].map((item)=>{ 
       if(item.id===id){
         item.complete=!item.complete
       } return item
@@ -92,16 +103,27 @@ const Item = ({ value, setValue, item }) => {
   }
   
   return (
-    <Stack 
-      
+    <Stack     
       direction={{base:"column", md:"row"}}
       alignItems={{base:'center', md:'flex-start'}}
       justifyContent='center'
       background='rgba(244 ,206, 170, 1)'
       rounded='md'
       padding={1}
-      width='100%'
-    >
+      width='100%'>
+      <Stack>
+        <Badge
+          fontSize={6}
+          variant='outline' 
+          colorScheme={item.complete?'green':'red'}> 
+          <Icon viewBox='0 0 200 200' color={item.complete?'green.500':'red.500'}>
+            <path
+              fill='currentColor'
+              d='M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
+              />
+          </Icon> {item.complete?'Realizada':'Pendiente'}
+        </Badge>
+      </Stack>
 
       <Text  
         width='60%'
@@ -111,14 +133,12 @@ const Item = ({ value, setValue, item }) => {
         fontSize={{base:'md', sm:'xl'}}
         borderColor={'black'} 
         as={item.complete?'del': ''}
-        padding={1}
-
-      >
-      {item.task}  </Text>
+        padding={1}>
+        {item.task}  
+      </Text>
             
       <ButtonGroup
-        spacing={2}
-      >
+        spacing={2}>
         <Tooltip 
           label={item.complete?'Marcar como incompleta':'Marcar como completa'} background={item.complete?'red.600':'green.600'}> 
           <IconButton
@@ -138,9 +158,7 @@ const Item = ({ value, setValue, item }) => {
               setOverlay(<OverlayTwo />)
               onOpen()
               setIsModal(true)
-
             }}
-            // onClick={()=>deleteTask(item.id)}
             variant='ghost'
             colorScheme='red'
             aria-label='Complete'
@@ -148,40 +166,69 @@ const Item = ({ value, setValue, item }) => {
             icon={<DeleteIcon />}
           />
         </Tooltip>
-        <Modal isCentered isOpen={isModal?isOpen:onclose} onClose={()=>{
-          onClose()
-          setIsModal(true)
-        }}>
-        {overlay}
-        <ModalContent>
-          <ModalHeader>{item.task}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>¿Desea eliminar permanentemente esta tarea?</Text>
-          </ModalBody>
-          <ModalFooter>
-           <ButtonGroup >
-           <Tooltip 
-          label='Cerrar' background='blue.600'> 
-           <Button colorScheme='blue' onClick={()=>{
-              onClose()
-              setIsModal(false)
-           }}>Close</Button>
-          </Tooltip>
-           <Tooltip 
-          label='Eliminar' background='red.600'> 
-            <Button colorScheme='red' onClick={()=>{
-              deleteTask(item.id)
-              setIsModal(false)
-              }}>Eliminar</Button>
-            </Tooltip>
-
-           </ButtonGroup> 
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-      <>
+        <Modal 
+          size='xs'
+          isCentered 
+          isOpen={isModal?isOpen:onclose} 
+          onClose={()=>{
+            onClose()
+            setIsModal(true)
+          }}>
+          {overlay}
+          <ModalContent>
+            <ModalHeader  
+              fontSize='sm'
+              background={item.complete ? 'green.100':'red.100' } >
+              <Stack>
+                <Alert fontSize='sm' status={item.complete? 'success' : 'error'}>   
+                  <AlertIcon />
+                  {item.complete?'Tarea completa!':'Aún no has realizado ésta tarea'}
+                </Alert>
+              </Stack>
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody textAlign='center' background='orange.100' >
+              <Text>
+                {item.complete?"¿Deseas que ésta tarea será eliminada permanentemente?" : "¿Deseas eliminar permanentemente esta tarea sin haberla completado?"}
+              </Text>
+              <Divider />
+              <Text 
+                padding={2}
+                fontSize='xl'>
+              {item.task}
+              </Text>
+            </ModalBody>
+            <ModalFooter background='orange.100'>
+              <ButtonGroup 
+                size='xs'>
+                <Tooltip 
+                  label='Cerrar' 
+                  background='gray.800'> 
+                  <Button 
+                    colorScheme='gray' 
+                    onClick={()=>{
+                      onClose()
+                      setIsModal(false)
+                    }}>Cancelar</Button>
+                </Tooltip>
+                <Tooltip 
+                label='Eliminar' 
+                background='red.600'> 
+                <Button 
+                  colorScheme='red' 
+                  onClick={()=>{
+                    deleteTask(item.id)
+                    setIsModal(false)
+                  }}>
+                  Ok
+                </Button>
+                </Tooltip>
+              </ButtonGroup> 
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        </>
+        <>
         <Tooltip 
           label='Editar' background='blue.600'>  
           <IconButton 
@@ -194,36 +241,56 @@ const Item = ({ value, setValue, item }) => {
             icon={<EditIcon />}
           />
         </Tooltip>  
-
           <Drawer
-            background='rgba(244 ,206, 170, 1)'
             isOpen={!isModal?isOpen:onclose}
             placement='right'
             onClose={onClose}
             finalFocusRef={btnRef} >
             <DrawerOverlay />
-            <DrawerContent >
+            <DrawerContent 
+            background='rgba(244 ,206, 170, 1)'
+            >
               <DrawerCloseButton />
-              <DrawerHeader>
-                Editar tarea
+              <DrawerHeader >
+                Editar tarea : "{item.task}"
+                
               </DrawerHeader>
               <DrawerBody>
-                <Input m={2} type='text' value={edit} onChange={editTask} placeholder={item.task}/>         
+                  <Text>
+                    Tarea editada: 
+                  </Text>   
+                  <Divider
+                    color='black'
+                    size='xl'/>
+                  <Input
+                  background='blue.100'
+                  m={2} 
+                  type='text' 
+                  value={edit} 
+                  onChange={editTask} 
+                  placeholder={item.task}/>
               </DrawerBody>
               <DrawerFooter>
-                <Button variant='red.500' mr={3} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button  onClick={()=>{
-                  handleTask(item.id)
-                  onClose(true)} }
-                  colorScheme='blue'
-                >
-                  Editar
-                </Button>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
+                <ButtonGroup
+                  size='sm'>
+                  <Button 
+                    backgroundColor='gray.200' 
+                    mr={3} 
+                    onClick={onClose}>
+                    Cancelar
+                  </Button>
+                  <Button  
+                    onClick={()=>{
+                      handleTask(item.id)
+                      onClose(true)} 
+                    }
+                    colorScheme='blue'>
+                    Editar
+                  </Button>
+                </ButtonGroup>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
           </>
       </ButtonGroup>
     </Stack>
@@ -231,32 +298,3 @@ const Item = ({ value, setValue, item }) => {
 }
 
 export default Item
- {/* <Modal 
-        blockScrollOnMount={false} 
-        isOpen={isOpen} 
-        onClose={onClose}
-        background='rgba(0, 0, 0, 0.4)'
-        >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Editar Tarea</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-
-            <Editable defaultValue={item.task}>
-              <EditablePreview value= {`${item.task}  ${<EditIcon />}` }/>
-              <EditableInput value={edit} onChange={editTask}/>
-            </Editable>
-
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button onClick={()=>{
-              handleTask(item.id)
-              onClose(true)} }variant='ghost'>Editar</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
