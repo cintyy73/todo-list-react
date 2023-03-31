@@ -37,15 +37,17 @@ function App() {
   
   return (
   <Center  
+    
     minHeight='100vh' 
     width='100vw'  
     bgImage={`url(${images[index]})`} 
     backgroundSize='cover'>
    
     <Box   
+      minHeight='90vh' 
       width={{base:'80%', md:'60%'}} 
       marginTop={8}
-      background='rgba(246, 178, 107, 0.2)'
+      background='rgba(246, 178, 107, 0.3)'
       boxShadow='dark-lg'
       rounded='md'
       display='flex'
@@ -72,8 +74,10 @@ function App() {
               backgroundSize='cover'
               margin={8} 
               padding={1}
-              onClick={()=>setIndex(Math.floor(Math.random()*10))} >
-                🎨
+              onClick={(prev)=>{
+                setIndex(Math.floor(Math.random()*images.length))}
+              } >
+              🎨
             </Button> 
           </Tooltip>  
           ToDo List ✔   
