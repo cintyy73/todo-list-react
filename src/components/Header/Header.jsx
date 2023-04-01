@@ -14,6 +14,7 @@ import { setItemLS } from '../../utils/js/utils'
 
 const Header = ({ value, setValue}) => {
     const handleChange = (event) => {
+        event.preventDefault()
         setValue({
             ...value,
             [event.target.name]: (event.target.value)
@@ -23,6 +24,7 @@ const Header = ({ value, setValue}) => {
     const handleList = () => {
         setValue({
             ...value,
+            task:'',
             list: [...value.list, {
                 ...list,
                 task: value.task,
@@ -42,7 +44,7 @@ const Header = ({ value, setValue}) => {
     }
 
     return (
-        <VStack>
+        <VStack as='form' onSubmit={handleChange}>
             
             <HStack >
 
@@ -65,6 +67,7 @@ const Header = ({ value, setValue}) => {
                         <Tooltip 
                             label='Añadir tarea' background='green.400'>  
                             <IconButton 
+                                type='submit'
                                 colorScheme='green'
                                 h='1.75rem'     
                                 size='sm' 
@@ -87,24 +90,37 @@ const Header = ({ value, setValue}) => {
                  
             >
                 <option 
-                    style={{color:"black", background:"rgba(246, 178, 107, 0.8)"}}
+                    style={{
+                        color:"black", 
+                        background:"rgba(246, 178, 107, 0.8)"
+                    }}
                     value='all'>
                     Seleccionar filtro
                 </option>
 
                 <option 
-                    style={{color:"black", background:"rgba(246, 178, 107, 0.8)"}}
+                    style={{
+                        color:"black", 
+                        background:"rgba(246, 178, 107, 0.8)"
+                    }}
                     value='all'>
                     Todas las tareas
                 </option>
 
                 <option 
-                    style={{color:"black", background:"rgba(246, 178, 107, 0.8)"}}                value='complete'>
+                    style={{
+                        color:"black", 
+                        background:"rgba(246, 178, 107, 0.8)"
+                    }}                
+                    value='complete'>
                     Tareas completadas
                 </option>
 
                 <option 
-                    style={{color:"black", background:"rgba(246, 178, 107, 0.8)"}}                 value='pending'>
+                    style={{color:"black", 
+                        background:"rgba(246, 178, 107, 0.8)"
+                    }}                 
+                    value='pending'>
                     Tareas pendientes
                 </option>
 
