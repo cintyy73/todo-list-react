@@ -59,6 +59,7 @@ function App() {
       <VStack 
         color='current'>
         <Heading 
+          textShadow='1px 1px white'
           size={{base:'2xl', xl:'4xl'}}
           color='rgba(0, 0, 0, 1)'
           textAlign='center'>
