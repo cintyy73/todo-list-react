@@ -35,11 +35,15 @@ import {
   DrawerBody,
   DrawerFooter, 
   Tooltip,
+  Slider,
+  SliderMark,
+  SliderTrack,
+  SliderFilledTrack, 
+  SliderThumb,
   Divider,
   AlertIcon,
-  Alert, 
+  Alert
 } from "@chakra-ui/react"
-
 const Item = ({ value, setValue, item }) => {
 
   const OverlayTwo = () => (
@@ -55,7 +59,8 @@ const Item = ({ value, setValue, item }) => {
   const [edit, setEdit] = useState(item.task)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = useState(<OverlayTwo />)
-
+  const [sliderValue, setSliderValue] = useState(1)
+  const [showTooltip, setShowTooltip] = useState(false)
   const handleText = (id)=>{
     const newList = [...value.list].map((item)=>{ 
       if(item.id===id){
@@ -92,6 +97,16 @@ const Item = ({ value, setValue, item }) => {
 
   }
 
+  const priority = (id,v) =>{
+   const priorityList = [...value.list].map((item)=>{ 
+      if(item.id===id){
+        item.priority=v
+      } return item
+    })
+    setItemLS('tasks', priorityList)  
+    console.log(item.priority)
+  }
+
   const deleteTask = (id) => {
   
     setValue({
@@ -101,6 +116,7 @@ const Item = ({ value, setValue, item }) => {
     setItemLS('tasks',(value.list).filter((item)=>item.id!==id))
  
   }
+    
   
   return (
     <Stack     
@@ -110,9 +126,57 @@ const Item = ({ value, setValue, item }) => {
       background='rgba(244 ,206, 170, 1)'
       rounded='md'
       padding={1}
-      width='100%'>
-      <Stack>
+      width='100%'
+      gap={2}>
+      <Stack
+        paddinn={2}
+        gap={2}
+        justifyContent='center' >
+      <Slider
+      borderColor='black'
+      id='slider'
+      defaultValue={1}
+      min={0}
+      max={2}
+      colorScheme='red'
+     
+      onChange={(v) => {
+        setSliderValue(v)
+        priority(item.id, v)
+      }}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+      margin={1}
+      
+      gap={3} 
+      width='20'
+      padding={2}>
+      <SliderMark value={0} fontSize='sm'>
+        -
+      </SliderMark>
+      <SliderMark value={1}  fontSize='sm'>
+        
+      </SliderMark>
+      <SliderMark value={2}  fontSize='sm'>
+        +
+      </SliderMark>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <Tooltip
+        hasArrow
+        bg='teal.500'
+        color='blue'
+        placement='top'
+        isOpen={showTooltip}
+        label={`Prioridad`}
+      >
+        <SliderThumb />
+      </Tooltip>
+    </Slider>
+
         <Badge
+          textAlign='center'
           fontSize={6}
           variant='outline' 
           colorScheme={item.complete?'green':'red'}> 

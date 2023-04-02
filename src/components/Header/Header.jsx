@@ -29,7 +29,8 @@ const Header = ({ value, setValue}) => {
                 ...list,
                 task: value.task,
                 id: self.crypto.randomUUID(),
-                complete:false
+                complete:false,
+                priority:1
             }]
         })
 
@@ -37,7 +38,9 @@ const Header = ({ value, setValue}) => {
             ...list,
             task: value.task,
             id: self.crypto.randomUUID(),
-            complete:false
+            complete:false,
+            priority:1
+
     
         }]
         )
