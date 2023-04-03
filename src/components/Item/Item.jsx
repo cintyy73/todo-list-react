@@ -261,14 +261,9 @@ const Item = ({ value, setValue, item }) => {
             <ModalCloseButton />
             <ModalBody textAlign='center' background='orange.100' >
               <Text>
-                {item.complete?"¿Deseas que ésta tarea será eliminada permanentemente?" : "¿Deseas eliminar permanentemente esta tarea sin haberla completado?"}
+                {item.complete?`¿Deseas que 👉 "${item.task}" sea eliminada permanentemente?` : ` ¿Deseas eliminar permanentemente 👉 "${item.task}" sin haberla completado?`}
               </Text>
-              <Divider />
-              <Text 
-                padding={2}
-                fontSize='xl'>
-              {item.task}
-              </Text>
+
             </ModalBody>
             <ModalFooter background='orange.100'>
               <ButtonGroup 
