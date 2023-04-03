@@ -3,8 +3,11 @@ import {
   Button,
   Heading,
   VStack,
-  Center,
-  Tooltip
+  HStack,
+  Tooltip,
+  Avatar,
+  Wrap,
+  WrapItem
 } from "@chakra-ui/react"
 
 import { useState } from 'react'
@@ -36,14 +39,27 @@ function App() {
   const [index, setIndex] = useState(0) 
   
   return (
-  <Center  
-    
+  <HStack  
+    alignItems='flex-start'
+    justifyContent='center'
     minHeight='100vh' 
     width='100vw'  
     bgImage={`url(${images[index]})`} 
     backgroundSize='cover'>
-   
+   <Wrap 
+    position='fixed'
+    left={12}
+    top={3}
+    display={{base:'none', md:'flex'}}
+  >
+      <WrapItem>
+        <Avatar 
+          size={{base:'md', md:'xl', xl:'2xl'}}
+          src='src/assets/logo/logo.png' />
+      </WrapItem>
+   </Wrap>
     <Box   
+      justifySelf='flex-Start'
       minHeight='90vh' 
       width={{base:'80%', md:'60%'}} 
       marginTop={8}
@@ -93,7 +109,7 @@ function App() {
         />
       </VStack>
     </Box>
-  </Center>  
+  </HStack>  
   )
 } 
 
