@@ -59,7 +59,7 @@ const Item = ({ value, setValue, item }) => {
   const [edit, setEdit] = useState(item.task)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = useState(<OverlayTwo />)
-  const [sliderValue, setSliderValue] = useState(1)
+  const [sliderValue, setSliderValue] = useState(item.priority)
   const [showTooltip, setShowTooltip] = useState(false)
   const handleText = (id)=>{
     const newList = [...value.list].map((item)=>{ 
@@ -104,7 +104,13 @@ const Item = ({ value, setValue, item }) => {
       } return item
     })
     setItemLS('tasks', priorityList)  
-    console.log(item.priority)
+    setTimeout(() => {
+      setValue({
+        ...value,
+        list:priorityList
+      })
+    }, 2000);  
+   
   }
 
   const deleteTask = (id) => {
@@ -135,14 +141,15 @@ const Item = ({ value, setValue, item }) => {
       <Slider
       borderColor='black'
       id='slider'
-      defaultValue={1}
+      defaultValue={item.priority}
       min={0}
-      max={2}
+      max={10}
       colorScheme='red'
      
       onChange={(v) => {
         setSliderValue(v)
         priority(item.id, v)
+
       }}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
@@ -151,14 +158,14 @@ const Item = ({ value, setValue, item }) => {
       gap={3} 
       width='20'
       padding={2}>
-      <SliderMark value={0} fontSize='sm'>
-        -
+      <SliderMark value={0} padding={1}fontSize={8}>
+        Baja
       </SliderMark>
-      <SliderMark value={1}  fontSize='sm'>
-        
+      <SliderMark value={5} padding={1} fontSize={8}>
+            Media
       </SliderMark>
-      <SliderMark value={2}  fontSize='sm'>
-        +
+      <SliderMark value={10} padding={1} fontSize={8}>
+        Alta
       </SliderMark>
       <SliderTrack>
         <SliderFilledTrack />
@@ -197,8 +204,9 @@ const Item = ({ value, setValue, item }) => {
         fontSize={{base:'md', sm:'xl'}}
         borderColor={'black'} 
         as={item.complete?'del': ''}
-        padding={1}>
-        {item.task}  
+        marginLeft={2} 
+        padding={3}>
+        {item.task} 
       </Text>
             
       <ButtonGroup

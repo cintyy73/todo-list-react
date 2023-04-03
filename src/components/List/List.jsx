@@ -8,7 +8,7 @@ const List = ({value, setValue}) => {
       whidth='80%'
       paddingTop={3}>
       {   
-        (value.list).filter((item) =>{
+        (value.list.sort((x,y)=>(y.priority-x.priority))).filter((item) =>{
           if(value.filter === 'pending'){
             return !item.complete
           }
