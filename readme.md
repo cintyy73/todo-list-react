@@ -49,15 +49,23 @@ Es un diseño totalmente responsive para ser utilizado desde cualquier dispositi
  
  
 ##### Te dejo algunas Screenshots de mi App.
-![*Logo de App ](https://cintyy73.github.io/modulo-01-portafolio/logo.png).
-![*Tooltip: Marcar estado de tarea -Realizada](src/assets/readme/1.jpg).
+![*Logo de App](src/assets/logo/logo.png).
+
 ![*Mensaje para confirmar eliminación -tarea pendiente](src/assets/readme/2.jpg).
-![*Tooltip: Marcar estado de tarea -Pendiente](src/assets/readme/3.jpg).
-![*Inicio renderizado según prioridad](src/assets/readme/4.jpg).
-![*Boton para cambiar fondo de pantalla](src/assets/readme/5.jpg).
+
 ![*Mensaje para confirmar eliminación -tarea realizada](src/assets/readme/6.jpg).
-![*Slider con Tooltip: -Prioridad](src/assets/readme/7.jpg).
+
 ![*Drawer para editar tarea renderizando texto a editar y resultado](src/assets/readme/8.jpg).
+
+![*Boton para cambiar fondo de pantalla](src/assets/readme/5.jpg).
+
+![*Tooltip: Marcar estado de tarea -Realizada](src/assets/readme/1.jpg).
+
+![*Tooltip: Marcar estado de tarea -Pendiente](src/assets/readme/3.jpg).
+
+![*Slider con Tooltip: -Prioridad](src/assets/readme/7.jpg).
+
+![*Inicio renderizado según prioridad](src/assets/readme/4.jpg).
 ---
 
 
