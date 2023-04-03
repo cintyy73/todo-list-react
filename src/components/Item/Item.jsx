@@ -242,6 +242,7 @@ const Item = ({ value, setValue, item }) => {
           size='xs'
           isCentered 
           isOpen={isModal?isOpen:onclose} 
+          closeOnOverlayClick={false}
           onClose={()=>{
             onClose()
             setIsModal(true)
