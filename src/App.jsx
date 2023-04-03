@@ -27,6 +27,7 @@ import img9 from "./assets/background/img-9.jpg"
 import img10 from "./assets/background/img-11.jpg"
 
 
+
 const images = [img10, img1, img2, img3, img4, img5, img6, img7, img8, img9, img0]//falta validacion para q no se repita el index
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
       <WrapItem>
         <Avatar 
           size={{base:'md', md:'xl', xl:'2xl'}}
-          src='src/assets/logo/logo.png' />
+          src='https://cintyy73.github.io/modulo-01-portafolio-ada-2022/assets/portada-proyectos/logo.png' />
       </WrapItem>
    </Wrap>
     <Box   
