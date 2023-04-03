@@ -38,20 +38,26 @@ Es un diseño totalmente responsive para ser utilizado desde cualquier dispositi
 - Modal con Alert de advertencia para confirmar eliminación con mensaje y texto condicionado al estado de tarea realizada/pendiente.
 - Drawer para editar tarea renderizando estado previo y editado.
 - Boton para cambiar fondo de imagenes aleatorio.
+-Logo.
 - Favicon.
 - Etiquetas meta.
 - Google verification.
+-Git branch: 
+  - Se usa rama Develop para desarrollo de app.
+  - Una vez llegado al objetivo básico se crea una nueva rama Feature.
+  - se crea una neuva rama para cada funcionalidad o corrección. 
  
  
 ##### Te dejo algunas Screenshots de mi App.
-![*](src/assets/readme/1.jpg).
-![*](src/assets/readme/2.jpg).
-![*](src/assets/readme/3.jpg).
-![*](src/assets/readme/4.jpg).
-![*](src/assets/readme/5.jpg).
-![*](src/assets/readme/6.jpg).
-![*](src/assets/readme/7.jpg).
-![*](src/assets/readme/8.jpg).
+![*Logo de App ](https://cintyy73.github.io/modulo-01-portafolio/logo.png).
+![*Tooltip: Marcar estado de tarea -Realizada](src/assets/readme/1.jpg).
+![*Mensaje para confirmar eliminación -tarea pendiente](src/assets/readme/2.jpg).
+![*Tooltip: Marcar estado de tarea -Pendiente](src/assets/readme/3.jpg).
+![*Inicio renderizado según prioridad](src/assets/readme/4.jpg).
+![*Boton para cambiar fondo de pantalla](src/assets/readme/5.jpg).
+![*Mensaje para confirmar eliminación -tarea realizada](src/assets/readme/6.jpg).
+![*Slider con Tooltip: -Prioridad](src/assets/readme/7.jpg).
+![*Drawer para editar tarea renderizando texto a editar y resultado](src/assets/readme/8.jpg).
 ---
 
 
