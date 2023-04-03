@@ -44,14 +44,14 @@ Es un diseño totalmente responsive para ser utilizado desde cualquier dispositi
  
  
 ##### Te dejo algunas Screenshots de mi App.
-![](src./assets./readme/1.jpg).
-![](src./assets./readme/2.jpg).
-![](src./assets./readme/3.jpg).
-![](src./assets./readme/4.jpg).
-![](src./assets./readme/5.jpg).
-![](src./assets./readme/6.jpg).
-![](src./assets./readme/7.jpg).
-![](src./assets./readme/8.jpg).
+![*](src/assets/readme/1.jpg).
+![*](src/assets/readme/2.jpg).
+![*](src/assets/readme/3.jpg).
+![*](src/assets/readme/4.jpg).
+![*](src/assets/readme/5.jpg).
+![*](src/assets/readme/6.jpg).
+![*](src/assets/readme/7.jpg).
+![*](src/assets/readme/8.jpg).
 ---
 
 
