@@ -109,7 +109,7 @@ const Item = ({ value, setValue, item }) => {
         ...value,
         list:priorityList
       })
-    }, 2000);  
+    }, 3000);  
    
   }
 

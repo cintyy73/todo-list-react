@@ -1,3 +1,10 @@
+import { CheckCircleIcon } from '@chakra-ui/icons'
+import { useState } from 'react'
+import { 
+    setItemLS,
+    handleChange
+ 
+ } from '../../utils/js/utils'
 import { 
     VStack,
     HStack,
@@ -5,53 +12,63 @@ import {
     Input,
     Select,
     list,
+    Alert,
+    AlertIcon,
     InputRightElement,
     InputGroup,
+    CloseButton,
     Tooltip  
 } from '@chakra-ui/react'
-import { CheckCircleIcon } from '@chakra-ui/icons'
-import { setItemLS } from '../../utils/js/utils'
-
 const Header = ({ value, setValue}) => {
-    const handleChange = (event) => {
-        event.preventDefault()
-        setValue({
-            ...value,
-            [event.target.name]: (event.target.value)
-        })
-    }  
+
+    const [isError, setIsError] = useState(false)
 
     const handleList = () => {
-        setValue({
-            ...value,
-            task:'',
-            list: [...value.list, {
+        setIsError(false)
+        if( value.task.length>3){
+            setValue({
+                ...value,
+                task:'',
+                list: [...value.list, {
+                    ...list,
+                    task: value.task,
+                    id: self.crypto.randomUUID(),
+                    complete:false,
+                    priority:1
+                }]
+            })
+
+            setItemLS('tasks',[...value.list, {
                 ...list,
                 task: value.task,
                 id: self.crypto.randomUUID(),
                 complete:false,
-                priority:1
-            }]
-        })
+                priority:1       
+            }])
+        } else{
 
-        setItemLS('tasks',[...value.list, {
-            ...list,
-            task: value.task,
-            id: self.crypto.randomUUID(),
-            complete:false,
-            priority:1
+            setIsError(true) 
+        }  
 
+    } 
     
-        }]
-        )
-    }
+
+
 
     return (
-        <VStack as='form' onSubmit={handleChange}>
+
+        <VStack as='form' onSubmit={(e)=>handleChange(e, value, setValue)}>
+                {isError &&
+                    <Alert size='xs' fontSize='xs' status='error'>
+                        <AlertIcon />
+                        OUCH!🥴 ¡Debe ingresar un texto mínimo de 4 letras!
+                    </Alert>
+                }
             
             <HStack >
 
-                <InputGroup  size='md'>
+
+            <InputGroup  size='md'>
 
                     <Input
                         
@@ -59,7 +76,9 @@ const Header = ({ value, setValue}) => {
                         type='text'
                         name='task'
                         value={value.task}
-                        onChange={handleChange}
+                        onChange={(e)=>{handleChange(e, value, setValue)
+                        }
+            }
                         placeholder='Anadir nueva tarea'
                         _placeholder={{color:'black'}}
                         background='rgba(246, 178, 107, 0.8)'
@@ -87,7 +106,9 @@ const Header = ({ value, setValue}) => {
             <Select
                 name='filter'
                 value={value.filter}
-                onChange={handleChange}
+                onChange={(e)=>
+                    handleChange(e, value, setValue)
+                }
                 _placeholder={{color:'black'}}
                 background='rgba(246, 178, 107, 0.8)'
                  
