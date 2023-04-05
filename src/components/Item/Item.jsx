@@ -57,6 +57,8 @@ const Item = ({ value, setValue, item }) => {
   const btnRef = useRef()
   const [isModal, setIsModal] = useState(false)
   const [edit, setEdit] = useState(item.task)
+  const [editError, setEditError] = useState(false)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = useState(<OverlayTwo />)
   const [sliderValue, setSliderValue] = useState(item.priority)
@@ -78,16 +80,22 @@ const Item = ({ value, setValue, item }) => {
 
   const editTask = (event) => {
     setEdit(event.target.value)
-    console.log(event.target.value)
+    if(edit.length<3){
+      setEditError(true)
+      console.log(editError)
+    }else{setEditError(false)}
   }
 
   const handleTask = (id)=>{
+   
+  
+
     const editList = [...value.list].map((item)=>{ 
       if(item.id===id){
         item.task=edit
       } return item
     })
-
+  
      setValue({
       ...value,
       list:editList
@@ -109,7 +117,7 @@ const Item = ({ value, setValue, item }) => {
         ...value,
         list:priorityList
       })
-    }, 3000);  
+    }, 2000);  
    
   }
 
@@ -337,6 +345,12 @@ const Item = ({ value, setValue, item }) => {
                   value={edit} 
                   onChange={editTask} 
                   placeholder={item.task}/>
+                  {editError && (
+                    <Alert size="xs" fontSize="xs" status="error">
+                      <AlertIcon />
+                      OUCH!🥴 ¡Debe ingresar un texto mínimo de 4 letras!
+                    </Alert>
+                  )}
               </DrawerBody>
               <DrawerFooter>
                 <ButtonGroup
@@ -344,13 +358,16 @@ const Item = ({ value, setValue, item }) => {
                   <Button 
                     backgroundColor='gray.200' 
                     mr={3} 
-                    onClick={onClose}>
+                    onClick={()=>{onClose()
+                      setEditError(false)}}>
                     Cancelar
                   </Button>
                   <Button  
+                    isDisabled={editError?true:false}
                     onClick={()=>{
                       handleTask(item.id)
-                      onClose(true)} 
+                      onClose(true)
+                      } 
                     }
                     colorScheme='blue'>
                     Editar
